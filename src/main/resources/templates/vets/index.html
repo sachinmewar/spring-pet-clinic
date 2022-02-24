@@ -5,6 +5,20 @@
   <title>Pet Clinic Index </title>
 </head>
 <body>
-<h1> List of vets.. </h1>
+<h1> List of Vets.. </h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>firstname</th>
+    <th>lastname</th>
+  </tr>
+  <tr th:each="vet : ${vet}">
+    <td th:text="${vet.id}"></td>
+    <td th:text="${vet.firstName}"></td>
+    <td th:text="${vet.lastName}"></td>
+  </tr>
+</table>
+
 </body>
 </html>
