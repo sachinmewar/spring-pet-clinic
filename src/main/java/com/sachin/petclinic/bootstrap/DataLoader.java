@@ -1,10 +1,11 @@
 package com.sachin.petclinic.bootstrap;
 
 import com.sachin.petclinic.model.Owner;
+import com.sachin.petclinic.model.PetType;
 import com.sachin.petclinic.model.Vet;
 import com.sachin.petclinic.service.OwnerService;
+import com.sachin.petclinic.service.PetTypeService;
 import com.sachin.petclinic.service.VetService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +14,20 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
 
     @Override
     public void run(String... args) throws Exception {
+
+        System.out.println("....Bootstrapped owner....");
+
         Owner owner1 = new Owner();
         owner1.setFirstName("Sachin");
         owner1.setLastName("Mewar");
@@ -34,7 +40,7 @@ public class DataLoader implements CommandLineRunner {
 
         ownerService.save(owner2);
 
-        System.out.println("Bootstrapped owner....");
+        System.out.println("....Bootstrapped vet....");
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Ankit");
@@ -48,6 +54,17 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(vet2);
 
-        System.out.println("Bootstrapped vet....");
+        System.out.println("....Bootstrapped PetType....");
+
+        PetType petType1 = new PetType();
+        petType1.setName("Dog");
+
+        petTypeService.save(petType1);
+
+        PetType petType2 = new PetType();
+        petType2.setName("Bird");
+
+        petTypeService.save(petType2);
+
     }
 }
